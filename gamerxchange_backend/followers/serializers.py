@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .models import Follower
 
 
-class FollowerSerializers(serializers.ModelSerializer):
+class FollowerSerializer(serializers.ModelSerializer):
 
     follower = serializers.ReadOnlyField(source='follower.username')
     is_owner = serializers.SerializerMethodField()
@@ -18,5 +18,5 @@ class FollowerSerializers(serializers.ModelSerializer):
         model = Follower
         fields = [
             'id', 'follower', 'is_owner', 'profile_id', 'profile_image',
-            'following', 'created_at', 'updated_at'
+            'followed', 'created_at', 'updated_at'
         ]
