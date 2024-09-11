@@ -1,19 +1,21 @@
-from django.shortcuts import render
 from rest_framework import generics, permissions
+from gamerxchange_backend.permissions import IsOwnerOrReadOnly
 from likes.models import Like
-from .serializers import LikeSerializer
+from likes.serializers import LikeSerializer
 
-# Create your views here.
+
 class LikeList(generics.ListCreateAPIView):
-    
-    queryset = Like.objects.all()
-    serializer_class = LikeSerializer
+   
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = LikeSerializer
+    queryset = Like.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-    
-class LikeDetail(generics.RetrieveUpdateDestroyAPIView):
-        queryset = Like.objects.all()
-        serializer_class = LikeSerializer
-        permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class LikeDetail(generics.RetrieveDestroyAPIView):
+
+    permission_classes = [IsOwnerOrReadOnly]
+    serializer_class = LikeSerializer
+    queryset = Like.objects.all()
