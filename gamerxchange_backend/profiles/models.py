@@ -9,6 +9,8 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=255, blank=True)
     content = models.TextField(blank=True)
+    favorite_console = models.CharField(max_length=100, blank=True)  
+    favorite_game = models.CharField(max_length=100, blank=True)
     image = models.ImageField(
         upload_to='images/', default='../default_profile_qdjgyp'
     )
