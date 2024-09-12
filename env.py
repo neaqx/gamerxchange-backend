@@ -27,3 +27,4 @@ print(auto_crop_url)
 
 os.envrion['DEV'] = '1'
 os.environ['DATABASE_URL'] = "postgres://ulb3rhbcgqg:oWiNeSgNrwYt@ep-gentle-mountain-a23bxz6h-pooler.eu-central-1.aws.neon.tech/swore_mumbo_draw_532644?sslmode=require"
+os.environ.setdefault("SECRET_KEY", "#gxc1234")
